@@ -1,0 +1,160 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Electrodomesticos API",
+      "version": "1.0.0",
+      "description": "Una simple API para gestionar productos electrodomésticos"
+    },
+    "servers": [
+      {
+        "url": "http://localhost:3000"
+      }
+    ],
+    "paths": {
+      "/producto/{id}": {
+        "get": {
+          "summary": "Obtiene un producto específico",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "description": "ID del producto a obtener",
+              "schema": {
+                "type": "integer"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Operación exitosa",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "integer"
+                      },
+                      "nombre": {
+                        "type": "string"
+                      },
+                      "descripcion": {
+                        "type": "string"
+                      },
+                      "precio": {
+                        "type": "number"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Error al acceder a la base de datos"
+            }
+          }
+        },
+        "put": {
+          "summary": "Actualiza un producto específico",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "description": "ID del producto a actualizar",
+              "schema": {
+                "type": "integer"
+              }
+            }
+          ],
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "nombre": {
+                      "type": "string"
+                    },
+                    "descripcion": {
+                      "type": "string"
+                    },
+                    "precio": {
+                      "type": "number"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Producto actualizado con éxito"
+            },
+            "500": {
+              "description": "Error al actualizar el producto en la base de datos"
+            }
+          }
+        },
+        "delete": {
+          "summary": "Elimina un producto específico",
+          "parameters": [
+            {
+              "name": "id",
+              "in": "path",
+              "required": true,
+              "description": "ID del producto a eliminar",
+              "schema": {
+                "type": "integer"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Producto eliminado con éxito"
+            },
+            "500": {
+              "description": "Error al eliminar el producto en la base de datos"
+            }
+          }
+        }
+      },
+      "/producto": {
+        "post": {
+          "summary": "Crea un nuevo producto",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "nombre": {
+                      "type": "string"
+                    },
+                    "descripcion": {
+                      "type": "string"
+                    },
+                    "precio": {
+                      "type": "number"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "Producto creado con éxito"
+            },
+            "500": {
+              "description": "Error al crear el producto en la base de datos"
+            }
+          }
+        }
+      }
+    }
+  }
+  
