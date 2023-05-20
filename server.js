@@ -46,6 +46,24 @@ app.get('/producto/:id', async (req, res) => {
     }
 });
 
+// Ruta GET para obtener todos los productos
+app.get('/producto', async (req, res) => {
+    try {
+        let pool = await sql.connect(config);
+        let result = await pool.request()
+            .query('SELECT * FROM Productos');
+
+        // Imprimir resultados de la consulta
+        console.log(result.recordset);
+
+        res.send(result.recordset);
+    } catch (err) {
+        // Imprimir el error completo en la consola
+        console.error(err);
+
+        res.status(500).send('Error al acceder a la base de datos.');
+    }
+});
 
 // Aquí puedes añadir más rutas para manejar otras operaciones
 app.post('/producto', async (req, res) => {
