@@ -47,7 +47,7 @@ app.get('/producto/:id', async (req, res) => {
 });
 
 // Ruta GET para obtener todos los productos
-app.get('/producto', async (req, res) => {
+app.get('/productolistar', async (req, res) => {
     try {
         let pool = await sql.connect(config);
         let result = await pool.request()
